@@ -8,10 +8,10 @@
 <body>
     <script>
         
-        let playerSelection = prompt("Choose Rock, Paper or Scissors:").toLowerCase();
-        console.log(playerSelection);
-        let computerSelection = getComputerChoice();
-        console.log(computerSelection);
+        let playerSelection;
+        let computerSelection;
+        let playerScore = 0;
+        let computerScore = 0;
 
         function getComputerChoice() {
             let choiceArray = ['rock', 'paper', 'scissors'];
@@ -20,24 +20,45 @@
         }
         
         function playRound() {
-            if (playerSelection === 'rock' && computerSelection === 'scissors') {
-                return console.log("You win! Rock beats Scissors.");
-            } else if (playerSelection === 'scissors' && computerSelection === 'paper') {
-                return console.log("You win! Scissors beats Paper.");
-            } else if (playerSelection === 'paper' && computerSelection === 'rock') {
-                return console.log("You win! Paper beats Rock.");
-            } else if (playerSelection === 'rock' && computerSelection === 'paper') {
-                return console.log("You lose! Paper beats Rock.");
-            } else if (playerSelection === 'scissors' && computerSelection === 'rock') {
-                return console.log("You lose! Rock beats Scissors.");
-            } else if (playerSelection === 'paper' && computerSelection === 'scissors') {
-                return console.log("You lose! Scissors beats Paper.")
+            if (playerSelection === 'rock' && computerSelection === 'scissors' || 
+                playerSelection === 'scissors' && computerSelection === 'paper' || 
+                playerSelection === 'paper' && computerSelection === 'rock') {
+                    playerScore += 1;
+                    return console.log(`You win! ${capitalize(playerSelection)} beats ${capitalize(computerSelection)}.`); 
+            } else if (playerSelection === 'rock' && computerSelection === 'paper' ||
+                       playerSelection === 'scissors' && computerSelection === 'rock' ||
+                       playerSelection === 'paper' && computerSelection === 'scissors') {
+                            computerScore += 1;
+                            return console.log(`You lose! ${capitalize(computerSelection)} beats ${capitalize(playerSelection)}.`);
             } else {
                 return console.log("It's a tie!");
             }
         }
 
-        console.log(playRound());
+        function game() {
+            for (let i = 0; i < 5; i++) {
+                playerSelection = prompt("Choose Rock, Paper or Scissors:").toLowerCase();
+                computerSelection = getComputerChoice();
+                playRound();
+            }
+        }
+            
+        function finalScore () {        
+                if (playerScore > computerScore) {
+                    return console.log(`You won by ${playerScore} to ${computerScore}!`)
+                } else if (playerScore < computerScore) {
+                    return console.log(`You lost by ${computerScore} to ${playerScore}!`)
+                } else {
+                    return console.log("The game ended in a tie!")
+                }
+            }
+
+        function capitalize(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        }
+
+        game();
+        finalScore();
 
     </script>
 </body>
