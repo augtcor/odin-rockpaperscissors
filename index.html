@@ -8,11 +8,27 @@
 <body>
     <script>
 
-        function getComputerChoice () {
+        let playerChoice = prompt("Choose Rock, Paper or Scissors:").toLowerCase();
+        let playerSelection;
+        switch (playerChoice) {
+            case 'rock':
+                playerSelection = 'Rock';
+                break;
+            case 'paper':
+                playerSelection = 'Paper';
+                break;
+            case 'scissors':
+                playerSelection = 'Scissors';
+                break;
+            default:
+                console.log("Not a valid choice.");
+        }
+
+        function getComputerChoice (computerSelection) {
             let compChoice = [
-                'rock',
-                'paper',
-                'scissors'
+                'Rock',
+                'Paper',
+                'Scissors'
             ];
             let compIndex = Math.floor(Math.random()*compChoice.length);
             compChoice = compChoice[compIndex];
