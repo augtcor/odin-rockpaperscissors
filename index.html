@@ -38,19 +38,27 @@
         function game() {
             for (let i = 0; i < 5; i++) {
                 playerSelection = prompt(`Round ${i + 1} of 5 :: Choose Rock, Paper or Scissors!`).toLowerCase();
-                computerSelection = getComputerChoice();
-                console.log(`Round ${i + 1}`);
-                playRound();
+                if (playerSelection != 'rock' && playerSelection != 'paper' && playerSelection != 'scissors') {
+                    playerScore = 0; 
+                    computerScore = 0;
+                    return console.log("That's not a valid choice.");
+                } else {
+                    computerSelection = getComputerChoice();
+                    console.log(`Round ${i + 1}`);
+                    playRound();
+                }
             }
         }
             
-        function finalScore () {        
-                if (playerScore > computerScore) {
-                    return console.log(`You won the game by ${playerScore} to ${computerScore}!`)
+        function finalScore() {        
+                if (playerScore === 0 && computerScore === 0) {
+                    return console.log("Reload the page to try again.");
+                } else if (playerScore > computerScore) {
+                    return console.log(`You won the game by ${playerScore} to ${computerScore}!`);
                 } else if (playerScore < computerScore) {
-                    return console.log(`You lost the game by ${computerScore} to ${playerScore}!`)
-                } else {
-                    return console.log("The game ended in a tie!")
+                    return console.log(`You lost the game by ${computerScore} to ${playerScore}!`);
+                } else if (playerScore === computerScore) {
+                    return console.log("The game ended in a tie!");
                 }
             }
 
