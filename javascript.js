@@ -21,18 +21,30 @@ function getComputerChoice() {
 }
 
 function playRound() {
+    let container = document.getElementById('container');
+    let para = document.createElement('p');
+    container.appendChild(para);
+    let results;
     if (playerSelection === 'rock' && computerSelection === 'scissors' || 
         playerSelection === 'scissors' && computerSelection === 'paper' || 
         playerSelection === 'paper' && computerSelection === 'rock') {
+            
             playerScore += 1;
-            return console.log(`You chose ${(playerSelection)} and your opponent chose ${(computerSelection)}.`, '\n', 'You win!', '\n', `${(playerSelection)} beats ${(computerSelection)}.`); 
+           
+            results = document.createTextNode(`You chose ${(playerSelection)} and your opponent chose ${(computerSelection)}. You win!`);
+            para.appendChild(results);
+
     } else if (playerSelection === 'rock' && computerSelection === 'paper' ||
                playerSelection === 'scissors' && computerSelection === 'rock' ||
                playerSelection === 'paper' && computerSelection === 'scissors') {
+                    
                     computerScore += 1;
-                    return console.log(`You chose ${(playerSelection)} and your opponent chose ${(computerSelection)}.`, '\n', 'You lose!', '\n', `${(computerSelection)} beats ${(playerSelection)}.`);
+                    
+                    results = document.createTextNode(`You chose ${(playerSelection)} and your opponent chose ${(computerSelection)}. You lose!`);
+                    para.appendChild(results);
     } else {
-        return console.log(`You chose ${(playerSelection)} and your opponent chose ${(computerSelection)}.`, '\n', "It's a tie!");
+        results = document.createTextNode(`You chose ${(playerSelection)} and your opponent chose ${(computerSelection)}. It's a tie!`);
+        para.appendChild(results);
     }
 }
 
