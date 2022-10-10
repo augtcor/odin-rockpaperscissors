@@ -54,15 +54,46 @@ function playRound() {
 function updateScore() {
     let game = document.getElementById('game');
     let h2 = document.createElement('h2');
-    game.appendChild(h2);     
-    let content = document.createTextNode(`Round ${rounds} of 5`);
-    h2.appendChild(content);
-    let pscore = document.getElementById('playerScore');
-    let pnumber = document.createTextNode(` ${playerScore}`);
-    pscore.appendChild(pnumber);
-    let cscore = document.getElementById('computerScore');
-    let cnumber = document.createTextNode(` ${computerScore}`);
-    cscore.appendChild(cnumber);
+    let content;
+
+    let pScore = document.getElementById('playerScore');
+    let divPScore = document.createElement('div');
+    let pnumber;
+    
+    let cScore = document.getElementById('computerScore');
+    let divCScore = document.createElement('div');
+    let cnumber;
+
+    if (rounds === 1) {
+        game.appendChild(h2);
+        content = document.createTextNode(`Round ${rounds} of 5`);
+        h2.appendChild(content);
+
+        pScore.appendChild(divPScore);
+        pnumber = document.createTextNode(` ${playerScore}`);
+        divPScore.appendChild(pnumber);
+
+        cScore.appendChild(divCScore);
+        cnumber = document.createTextNode(` ${computerScore}`);
+        divCScore.appendChild(cnumber);
+    } else {
+        game.removeChild(game.querySelector('h2'));
+        game.appendChild(h2);
+        content = document.createTextNode(`Round ${rounds} of 5`);
+        h2.appendChild(content);
+
+        pScore.removeChild(pScore.querySelector('div'));
+        pScore.appendChild(divPScore);
+        pnumber = document.createTextNode(` ${playerScore}`);
+        divPScore.appendChild(pnumber);
+
+        cScore.removeChild(cScore.querySelector('div'));
+        cScore.appendChild(divCScore);
+        cnumber = document.createTextNode(` ${computerScore}`);
+        divCScore.appendChild(cnumber);
+    }
+
+
     }
 
 // // function game() {
