@@ -57,6 +57,12 @@ function updateScore() {
     game.appendChild(h2);     
     let content = document.createTextNode(`Round ${rounds} of 5`);
     h2.appendChild(content);
+    let pscore = document.getElementById('playerScore');
+    let pnumber = document.createTextNode(` ${playerScore}`);
+    pscore.appendChild(pnumber);
+    let cscore = document.getElementById('computerScore');
+    let cnumber = document.createTextNode(` ${computerScore}`);
+    cscore.appendChild(cnumber);
     }
 
 // // function game() {
