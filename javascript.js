@@ -2,17 +2,12 @@ let computerSelection;
 let playerSelection;
 let playerScore = 0;
 let computerScore = 0;
+let rounds = 0;
 
 let buttons = document.querySelectorAll('.btn')
 buttons.forEach(button => {
-    button.addEventListener('click', getPlayerChoice);
-});
-
-function getPlayerChoice() {
-    playerSelection = this.id;
-    computerSelection = getComputerChoice();
-    playRound();
-}
+    button.addEventListener('click', playRound);
+    });
 
 function getComputerChoice() {
     let choiceArray = ['rock', 'paper', 'scissors'];
@@ -21,10 +16,14 @@ function getComputerChoice() {
 }
 
 function playRound() {
+    playerSelection = this.id;
+    computerSelection = getComputerChoice();
+
     let container = document.getElementById('container');
     let para = document.createElement('p');
     container.appendChild(para);
     let results;
+    
     if (playerSelection === 'rock' && computerSelection === 'scissors' || 
         playerSelection === 'scissors' && computerSelection === 'paper' || 
         playerSelection === 'paper' && computerSelection === 'rock') {
@@ -46,7 +45,19 @@ function playRound() {
         results = document.createTextNode(`You chose ${(playerSelection)} and your opponent chose ${(computerSelection)}. It's a tie!`);
         para.appendChild(results);
     }
+
+    rounds += 1;
+
+    updateScore();
 }
+
+function updateScore() {
+    let game = document.getElementById('game');
+    let h2 = document.createElement('h2');
+    game.appendChild(h2);     
+    let content = document.createTextNode(`Round ${rounds} of 5`);
+    h2.appendChild(content);
+    }
 
 // // function game() {
 // //     for (let i = 0; i < 5; i++) {
